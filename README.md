@@ -49,17 +49,6 @@ npm run build
 npm start
 ```
 
-## Деплой на GitHub Pages
-
-Проект настроен для автоматического деплоя на GitHub Pages:
-
-1. Создайте репозиторий `xzchamp` на GitHub
-2. Запушьте код в ветку `main`
-3. В настройках репозитория (Settings → Pages) выберите Source: **GitHub Actions**
-4. Сайт будет доступен по адресу: `https://[ваш-username].github.io/xzchamp`
-
-При каждом пуше в `main` сайт будет автоматически пересобираться и публиковаться.
-
 ## Кастомизация
 
 ### Цвета
@@ -69,10 +58,6 @@ npm start
 - `--neon-blue: #00F0FF` - неоновый голубой
 - `--text-color: #E0E0E0` - цвет текста
 
-### Логотип
-Замените плейсхолдер логотипа в [components/Hero.tsx:17](components/Hero.tsx#L17):
-```tsx
-<img src="/your-logo.png" alt="PRO2XZ CHAMP" />
 ```
 
 ### Компоненты
