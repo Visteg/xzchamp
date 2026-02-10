@@ -5,7 +5,7 @@ import { useFormCache } from '../hooks/useFormCache'
 import { useAntiSpam } from '../hooks/useAntiSpam'
 
 interface RegistrationFormProps {
-  category: 'solo' | 'duet' | 'team'
+  category: 'solo' | 'duet' | 'team' | 'masterclass' | 'spectator'
   onClose: () => void
 }
 
