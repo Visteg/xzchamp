@@ -1,4 +1,4 @@
-# PRO2XZ CHAMP - Dance Championship Website
+# XZ CHAMP
 
 Минималистичный сайт для танцевального чемпионата в cyber/Y2K стиле.
 
