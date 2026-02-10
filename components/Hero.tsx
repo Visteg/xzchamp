@@ -93,7 +93,7 @@ export default function Hero() {
         >
           {/* Decorative background logo - Static */}
           <img
-            src="/proexz загогулина лого.png"
+            src="/xzchamp/proexz загогулина лого.png"
             alt="PRO2XZ Logo Background"
             className="w-full h-auto opacity-60"
             style={{
@@ -103,7 +103,7 @@ export default function Hero() {
           />
           {/* Clean logo overlay - With tilt effect */}
           <img
-            src="/proexz без загогулина лого.png"
+            src="/xzchamp/proexz без загогулина лого.png"
             alt="PRO2XZ Logo"
             className="absolute w-full h-auto"
             style={{

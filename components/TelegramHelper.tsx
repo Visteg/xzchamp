@@ -117,7 +117,7 @@ export default function TelegramHelper() {
 
         {/* Robot image */}
         <img
-          src="/proexz robot.png"
+          src="/xzchamp/proexz robot.png"
           alt="Telegram Helper Robot"
           className="w-20 h-20 md:w-24 md:h-24 transition-transform duration-300 group-hover:scale-110"
           style={{
