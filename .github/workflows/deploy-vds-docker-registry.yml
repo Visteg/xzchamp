@@ -52,8 +52,8 @@ jobs:
             docker pull ghcr.io/${{ github.repository }}/pro2xz:latest
 
             # Перезапускаем контейнер
-            docker-compose down
-            docker-compose up -d
+            docker compose down
+            docker compose up -d
 
             # Очистка
             docker image prune -f
