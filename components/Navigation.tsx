@@ -14,7 +14,7 @@ export default function Navigation() {
       <nav className="fixed top-0 left-0 right-0 flex justify-between items-center px-6 md:px-12 py-5 backdrop-blur-md bg-black/30 border-b border-white/10 z-[99]">
         <div className="relative">
           <span className="font-['Unbounded'] font-black text-lg md:text-xl text-white uppercase">
-            PRO2XZ
+            PROEXZ
           </span>
           {/* Neon glow under logo */}
           <div
@@ -40,6 +40,9 @@ export default function Navigation() {
           </a>
           <a href="#social" className="nav-link text-xs md:text-sm font-bold uppercase tracking-wide transition-all duration-300">
             Соц.сети
+          </a>
+          <a href="https://t.me/proexz_assistant" target="_blank" rel="noopener noreferrer" className="nav-link text-xs md:text-sm font-bold uppercase tracking-wide transition-all duration-300">
+            Чат поддержки
           </a>
         </div>
 
@@ -117,6 +120,15 @@ export default function Navigation() {
               className="mobile-menu-btn block w-full py-3 text-center text-white font-['Unbounded'] font-bold uppercase tracking-wider text-lg transition-all duration-300"
             >
               Соц.сети
+            </a>
+
+            <a
+              href="https://t.me/proexz_assistant"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mobile-menu-btn block w-full py-3 text-center text-white font-['Unbounded'] font-bold uppercase tracking-wider text-lg transition-all duration-300"
+            >
+              Чат поддержки
             </a>
 
             <a
