@@ -388,16 +388,28 @@ const accordionData: AccordionItem[] = [
 
 export default function ChampionshipRules() {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const [noTransitionIndex, setNoTransitionIndex] = useState<number | null>(null)
   const itemRefs = useRef<(HTMLDivElement | null)[]>([])
 
   const toggleAccordion = (index: number) => {
     const isClosing = openIndex === index
+    const prevIndex = openIndex
+
+    // При переключении между аккордеонами — мгновенно закрываем предыдущий,
+    // чтобы layout не прыгал из-за анимации закрытия контента выше
+    if (!isClosing && prevIndex !== null) {
+      setNoTransitionIndex(prevIndex)
+    }
+
     setOpenIndex(isClosing ? null : index)
 
     if (!isClosing) {
-      // Скроллим сразу после рендера, до начала CSS-анимации,
-      // чтобы избежать конфликта скролла с layout-сдвигами от анимации
       requestAnimationFrame(() => {
+        // Восстанавливаем анимацию для предыдущего элемента после отрисовки
+        requestAnimationFrame(() => {
+          setNoTransitionIndex(null)
+        })
+
         const element = itemRefs.current[index]
         if (!element) return
 
@@ -446,7 +458,9 @@ export default function ChampionshipRules() {
               </button>
 
               <div
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                className={`overflow-hidden ${
+                  noTransitionIndex === index ? '' : 'transition-all duration-300 ease-in-out'
+                } ${
                   openIndex === index ? 'max-h-[2000px] opacity-100 pb-5' : 'max-h-0 opacity-0'
                 }`}
               >

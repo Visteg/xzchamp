@@ -49,6 +49,8 @@ export default function SocialMedia() {
             <a
               key={index}
               href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex flex-col items-center gap-3"
             >
               <div className="relative w-16 h-16 rounded-full border-2 border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-[var(--neon-blue)] hover:shadow-[0_0_20px_var(--neon-blue)] group-hover:scale-110">
