@@ -68,7 +68,7 @@ export default function MasterClasses() {
         <div className="relative group">
           <div className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10">
             <img
-              src="/xzchamp/IMG_5531.JPEG"
+              src="/IMG_5531.JPEG"
               alt="Мастер-классы PRO2XZ"
               className="w-full h-auto object-cover"
             />

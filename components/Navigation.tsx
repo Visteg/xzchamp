@@ -132,7 +132,7 @@ export default function Navigation() {
             </a>
 
             <a
-              href="/xzchamp/privacy"
+              href="/privacy"
               className="mobile-menu-btn block w-full py-3 text-center text-white font-['Unbounded'] font-bold uppercase tracking-wider text-lg transition-all duration-300"
             >
               Политика конфиденциальности

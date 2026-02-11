@@ -93,8 +93,8 @@ export default function Hero() {
         >
           {/* Decorative background logo - Static */}
           <img
-            src="/xzchamp/proexz загогулина лого.png"
-            alt="PRO2XZ Logo Background"
+            src="/proexz загогулина лого.png"
+            alt="PROEXZ Logo Background"
             className="w-full h-auto opacity-60"
             style={{
               mixBlendMode: 'screen',
@@ -103,8 +103,8 @@ export default function Hero() {
           />
           {/* Clean logo overlay - With tilt effect */}
           <img
-            src="/xzchamp/proexz без загогулина лого.png"
-            alt="PRO2XZ Logo"
+            src="/proexz без загогулина лого.png"
+            alt="PROEXZ Logo"
             className="absolute w-full h-auto"
             style={{
               transform: `perspective(1000px) rotateX(${-tilt.y}deg) rotateY(${tilt.x}deg)`,
