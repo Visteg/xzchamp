@@ -196,7 +196,7 @@ export default function MasterclassForm({ onClose }: MasterclassFormProps) {
                   className="mt-1 w-5 h-5 rounded border-2 border-white/20 bg-white/5 checked:bg-[var(--neon-blue)] checked:border-[var(--neon-blue)] focus:outline-none cursor-pointer transition-all duration-300"
                 />
                 <span className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
-                  Я согласен с <a href="#privacy" className="text-[var(--neon-blue)] hover:underline">политикой конфиденциальности</a>
+                  Я согласен с <a href="/xzchamp/privacy" target="_blank" className="text-[var(--neon-blue)] hover:underline">политикой конфиденциальности</a>
                 </span>
               </label>
 
