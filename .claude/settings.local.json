@@ -5,7 +5,15 @@
       "Bash(find:*)",
       "Bash(test:*)",
       "Bash(git init:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nAdd Docker deployment configuration for VDS\n\n- Add Dockerfile with multi-stage build\n- Add docker-compose.yml with Nginx reverse proxy\n- Add nginx.conf with SSL support and caching\n- Add production Next.js config without basePath\n- Add deployment documentation and CI/CD workflows\n- Add environment example file\n\nCo-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)",
+      "Bash(powershell -Command:*)",
+      "Bash(dir:*)",
+      "Bash(cmd /c:*)",
+      "Bash(ffmpeg:*)"
     ]
   }
 }

@@ -174,13 +174,9 @@ export default function MasterclassForm({ onClose }: MasterclassFormProps) {
                 }}
               >
                 <option value="" disabled>выбрать классы</option>
-                <option value="hip-hop">Hip-Hop</option>
-                <option value="breaking">Breaking</option>
-                <option value="popping">Popping</option>
-                <option value="locking">Locking</option>
-                <option value="house">House</option>
-                <option value="dancehall">Dancehall</option>
-                <option value="contemporary">Contemporary</option>
+                <option value="full-pass">Full pass</option>
+                <option value="street-block">Street block</option>
+                <option value="ladies-block">Ladies block</option>
               </select>
             </div>
 

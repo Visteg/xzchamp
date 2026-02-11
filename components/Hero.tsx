@@ -83,7 +83,24 @@ export default function Hero() {
   return (
     <section className="flex flex-col items-center justify-center min-h-[80vh] text-center relative px-4 pt-20">
       {/* Logo Container */}
-      <div className="max-w-2xl w-full mb-8 px-4">
+      <div className="max-w-2xl w-full mb-8 px-4 relative">
+        {/* Background Video - Blurred */}
+        <div className="absolute inset-0 overflow-hidden rounded-3xl" style={{ margin: '-20%' }}>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            style={{
+              filter: 'blur(30px) brightness(0.4)',
+              transform: 'scale(1.2)',
+            }}
+          >
+            <source src="/1ОТКРЫВАШКА!.mp4" type="video/mp4" />
+          </video>
+        </div>
+
         {/* Float animation wrapper */}
         <div
           className="relative flex items-center justify-center"
