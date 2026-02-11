@@ -35,6 +35,10 @@ coverage
 # Бэкапы
 backups
 
+# SSL сертификаты
+certbot
+ssl
+
 # OS
 .DS_Store
 Thumbs.db
