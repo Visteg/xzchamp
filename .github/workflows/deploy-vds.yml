@@ -22,7 +22,7 @@ jobs:
           key: ${{ secrets.VDS_SSH_KEY }}
           port: ${{ secrets.VDS_PORT }}
           script: |
-            cd /path/to/xzchamp  # Замените на путь к проекту на VDS
+            cd /home/deployer/xzchamp
             git pull origin production
             docker-compose down
             docker-compose up -d --build
