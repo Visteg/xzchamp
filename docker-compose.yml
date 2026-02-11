@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  pro2xz:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: pro2xz-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    networks:
+      - pro2xz-network
+
+  # Опционально: Nginx как reverse proxy
+  nginx:
+    image: nginx:alpine
+    container_name: pro2xz-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro  # Для SSL сертификатов
+    depends_on:
+      - pro2xz
+    networks:
+      - pro2xz-network
+
+networks:
+  pro2xz-network:
+    driver: bridge

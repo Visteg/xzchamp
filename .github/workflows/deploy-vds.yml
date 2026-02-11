@@ -1,0 +1,30 @@
+name: Deploy to VDS
+
+on:
+  push:
+    branches:
+      - production  # Деплой при push в ветку production
+  workflow_dispatch:  # Возможность запустить вручную
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to VDS via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VDS_HOST }}
+          username: ${{ secrets.VDS_USER }}
+          key: ${{ secrets.VDS_SSH_KEY }}
+          port: ${{ secrets.VDS_PORT }}
+          script: |
+            cd /path/to/xzchamp  # Замените на путь к проекту на VDS
+            git pull origin production
+            docker-compose down
+            docker-compose up -d --build
+            docker image prune -f
+            echo "Deployment completed successfully!"
