@@ -262,16 +262,16 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
               </div>
 
               {/* Дата рождения */}
-              <div className="date-input-wrapper">
+              <div>
                 <input
-                  type="date"
+                  type="text"
                   name="birthDate"
+                  placeholder="дата рождения (ДД.ММ.ГГГГ)"
                   value={formData.birthDate}
                   onChange={handleInputChange}
                   required
                   className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300"
                 />
-                <label>дата рождения</label>
               </div>
 
               {/* Email for solo */}
@@ -362,16 +362,16 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
                 />
               </div>
 
-              <div className="date-input-wrapper">
+              <div>
                 <input
-                  type="date"
+                  type="text"
                   name="birthDate1"
+                  placeholder="дата рождения (первый участник) ДД.ММ.ГГГГ"
                   value={formData.birthDate1}
                   onChange={handleInputChange}
                   required
                   className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300"
                 />
-                <label>дата рождения (первый участник)</label>
               </div>
 
               <div>
@@ -418,16 +418,16 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
                 />
               </div>
 
-              <div className="date-input-wrapper">
+              <div>
                 <input
-                  type="date"
+                  type="text"
                   name="birthDate2"
+                  placeholder="дата рождения (второй участник) ДД.ММ.ГГГГ"
                   value={formData.birthDate2}
                   onChange={handleInputChange}
                   required
                   className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300"
                 />
-                <label>дата рождения (второй участник)</label>
               </div>
 
               <div>
