@@ -204,13 +204,16 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
                   }}
                 >
                   <option value="" disabled>Номинация</option>
-                  <option value="hip-hop">Hip-Hop</option>
-                  <option value="breaking">Breaking</option>
-                  <option value="popping">Popping</option>
-                  <option value="locking">Locking</option>
-                  <option value="house">House</option>
-                  <option value="dancehall">Dancehall</option>
-                  <option value="contemporary">Contemporary</option>
+                  <option value="babies-star-duo">Babies star duo</option>
+                  <option value="kids-duo">Kids duo</option>
+                  <option value="teens-beg-duo">Teens lvl BEG duo</option>
+                  <option value="teens-pro-duo">Teens lvl PRO duo</option>
+                  <option value="adults-contemporary-beg-duo">Adults contemporary lvl BEG duo</option>
+                  <option value="adults-contemporary-pro-duo">Adults contemporary lvl PRO duo</option>
+                  <option value="adults-street-beg-duo">Adults street lvl BEG duo</option>
+                  <option value="adults-street-pro-duo">Adults street lvl PRO duo</option>
+                  <option value="ladies-beg-duo">Ladies lvl BEG duo</option>
+                  <option value="ladies-pro-duo">Ladies lvl PRO duo</option>
                 </select>
               </div>
             </>
@@ -312,13 +315,25 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
                   }}
                 >
                   <option value="" disabled>Номинация</option>
-                  <option value="hip-hop">Hip-Hop</option>
-                  <option value="breaking">Breaking</option>
-                  <option value="popping">Popping</option>
-                  <option value="locking">Locking</option>
-                  <option value="house">House</option>
-                  <option value="dancehall">Dancehall</option>
-                  <option value="contemporary">Contemporary</option>
+                  <option value="babies-star-solo">Babies star solo</option>
+                  <option value="kids-contemporary-beg-solo">Kids contemporary lvl BEG solo</option>
+                  <option value="kids-contemporary-pro-solo">Kids contemporary lvl PRO solo</option>
+                  <option value="kids-street-beg-solo">Kids street lvl BEG solo</option>
+                  <option value="kids-street-pro-solo">Kids street lvl PRO solo</option>
+                  <option value="teens-contemporary-beg-solo">Teens contemporary lvl BEG solo</option>
+                  <option value="teens-contemporary-pro-solo">Teens contemporary lvl PRO solo</option>
+                  <option value="teens-street-beg-solo">Teens street lvl BEG solo</option>
+                  <option value="teens-street-pro-solo">Teens street lvl PRO solo</option>
+                  <option value="teens-afro-fusion-solo">Teens afro fusion solo</option>
+                  <option value="adults-contemporary-beg-solo">Adults contemporary lvl BEG solo</option>
+                  <option value="adults-contemporary-pro-solo">Adults contemporary lvl PRO solo</option>
+                  <option value="adults-afro-fusion-solo">Adults afro fusion solo</option>
+                  <option value="adults-street-beg-solo">Adults street lvl BEG solo</option>
+                  <option value="adults-street-pro-solo">Adults street lvl PRO solo</option>
+                  <option value="ladies-heels-beg-solo">Ladies heels lvl BEG solo</option>
+                  <option value="ladies-heels-pro-solo">Ladies heels lvl PRO solo</option>
+                  <option value="ladies-strip-beg-solo">Ladies strip lvl BEG solo</option>
+                  <option value="ladies-strip-pro-solo">Ladies strip lvl PRO solo</option>
                 </select>
               </div>
             </>
@@ -537,13 +552,19 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
                   }}
                 >
                   <option value="" disabled>Номинация</option>
-                  <option value="hip-hop">Hip-Hop</option>
-                  <option value="breaking">Breaking</option>
-                  <option value="popping">Popping</option>
-                  <option value="locking">Locking</option>
-                  <option value="house">House</option>
-                  <option value="dancehall">Dancehall</option>
-                  <option value="contemporary">Contemporary</option>
+                  <option value="babies-star-crew">Babies star crew</option>
+                  <option value="kids-contemporary-crew">Kids contemporary crew</option>
+                  <option value="kids-street-crew">Kids street crew</option>
+                  <option value="teens-contemporary-beg-crew">Teens contemporary lvl BEG crew</option>
+                  <option value="teens-contemporary-pro-crew">Teens contemporary lvl PRO crew</option>
+                  <option value="teens-street-beg-crew">Teens street lvl BEG crew</option>
+                  <option value="teens-street-pro-crew">Teens street lvl PRO crew</option>
+                  <option value="adults-contemporary-beg-crew">Adults contemporary lvl BEG crew</option>
+                  <option value="adults-contemporary-pro-crew">Adults contemporary lvl PRO crew</option>
+                  <option value="adults-street-beg-crew">Adults street lvl BEG crew</option>
+                  <option value="adults-street-pro-crew">Adults street lvl PRO crew</option>
+                  <option value="ladies-beg-crew">Ladies lvl BEG crew</option>
+                  <option value="ladies-pro-crew">Ladies lvl PRO crew</option>
                 </select>
               </div>
 
