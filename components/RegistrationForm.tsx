@@ -35,6 +35,7 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
     leaderPhone: '',
     leaderTelegram: '',
     participantsCount: '',
+    participantsDetails: '',
     // Masterclass fields
     selectedClasses: '',
     // Spectator fields
@@ -44,8 +45,8 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
     agreeOffer: false,
   })
 
-  // Team participants state
-  const [teamParticipants, setTeamParticipants, clearParticipantsCache] = useFormCache<Array<{ fullName: string; birthDate: string }>>(`registration-form-${category}-participants`, [])
+  // Team participants state - no longer needed with simplified form
+  // const [teamParticipants, setTeamParticipants, clearParticipantsCache] = useFormCache<Array<{ fullName: string; birthDate: string }>>(`registration-form-${category}-participants`, [])
 
   const { honeypotRef, validateSubmit, startCooldown, cooldownLeft, isDisabled } = useAntiSpam(`registration-${category}`)
 
@@ -78,16 +79,12 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
     e.preventDefault()
     if (!validateSubmit()) return
     // TODO: Обработка отправки формы
-    const submitData = category === 'team'
-      ? { category, ...formData, participants: teamParticipants }
-      : { category, ...formData }
-    console.log('Form submitted:', submitData)
+    console.log('Form submitted:', { category, ...formData })
     clearFormCache()
-    clearParticipantsCache()
     startCooldown()
   }
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target
     if (type === 'checkbox') {
       const checked = (e.target as HTMLInputElement).checked
@@ -95,26 +92,6 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
     } else {
       setFormData(prev => ({ ...prev, [name]: value }))
     }
-  }
-
-  const handleParticipantsCountChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const count = parseInt(e.target.value) || 0
-    setFormData(prev => ({ ...prev, participantsCount: e.target.value }))
-
-    // Initialize participants array with empty values
-    const newParticipants = Array.from({ length: count }, (_, i) => ({
-      fullName: teamParticipants[i]?.fullName || '',
-      birthDate: teamParticipants[i]?.birthDate || '',
-    }))
-    setTeamParticipants(newParticipants)
-  }
-
-  const handleParticipantChange = (index: number, field: 'fullName' | 'birthDate', value: string) => {
-    setTeamParticipants(prev => {
-      const updated = [...prev]
-      updated[index] = { ...updated[index], [field]: value }
-      return updated
-    })
   }
 
   return (
@@ -570,61 +547,31 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
                 </select>
               </div>
 
-              {/* Participants Count Selector */}
+              {/* Participants Count Input */}
               <div className="pt-4">
-                <select
+                <input
+                  type="text"
                   name="participantsCount"
+                  placeholder="введите кол-во участников"
                   value={formData.participantsCount}
-                  onChange={handleParticipantsCountChange}
+                  onChange={handleInputChange}
                   required
-                  className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300 appearance-none cursor-pointer"
-                  style={{
-                    backgroundImage: `url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23999' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E")`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: 'right 1.5rem center',
-                  }}
-                >
-                  <option value="" disabled>Количество участников</option>
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(num => (
-                    <option key={num} value={num}>{num} {num === 1 ? 'участник' : num < 5 ? 'участника' : 'участников'}</option>
-                  ))}
-                </select>
+                  className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300"
+                />
               </div>
 
-              {/* Dynamic Participants Fields */}
-              {teamParticipants.length > 0 && (
-                <div className="space-y-4 pt-4">
-                  <h4 className="text-white font-['Unbounded'] font-bold text-sm uppercase tracking-wide text-center">
-                    Список участников и даты рождения
-                  </h4>
-
-                  {teamParticipants.map((participant, index) => (
-                    <div key={index} className="space-y-2 p-4 rounded-2xl bg-white/5 border border-white/10">
-                      <div className="text-xs text-gray-400 font-['Unbounded'] mb-2">
-                        Участник {index + 1}
-                      </div>
-                      <input
-                        type="text"
-                        placeholder={`ФИО участника ${index + 1}`}
-                        value={participant.fullName}
-                        onChange={(e) => handleParticipantChange(index, 'fullName', e.target.value)}
-                        required
-                        className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300"
-                      />
-                      <div className="date-input-wrapper">
-                        <input
-                          type="date"
-                          value={participant.birthDate}
-                          onChange={(e) => handleParticipantChange(index, 'birthDate', e.target.value)}
-                          required
-                          className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300"
-                        />
-                        <label>дата рождения</label>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+              {/* Participants Details Textarea */}
+              <div className="pt-4">
+                <textarea
+                  name="participantsDetails"
+                  placeholder="Введите ФИО и дату рождения каждого участника"
+                  value={formData.participantsDetails || ''}
+                  onChange={handleInputChange}
+                  required
+                  rows={6}
+                  className="w-full px-6 py-4 rounded-3xl bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300 resize-none"
+                />
+              </div>
             </>
           )}
 
