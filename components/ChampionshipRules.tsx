@@ -365,6 +365,9 @@ const accordionData: AccordionItem[] = [
     title: 'МЕСТО ПРОВЕДЕНИЯ ЧЕМПИОНАТА И СЦЕНА',
     content: (
       <div className="space-y-4">
+        <div className="rounded-xl overflow-hidden">
+          <img src="/scene.jpg" alt="Сцена" className="w-full h-auto object-cover" />
+        </div>
         <div>
           <h5 className="text-[var(--neon-pink)] font-semibold mb-1">23–24 мая</h5>
           <p className="text-white font-semibold">Концертный зал «Пересвет Арена»</p>
