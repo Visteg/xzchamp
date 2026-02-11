@@ -12,22 +12,37 @@ interface ClassPackage {
 
 const packages: ClassPackage[] = [
   {
-    title: 'FULL PASS',
-    description: '5 Мастер - классов от хореографов по направлениям: .....',
-    instructors: 'От хореографов: ......',
-    schedule: ['12:00-', '13:00 -', '14:00', 'перерыв', '15:00 -', '16:00']
+    title: 'FULL',
+    description: '5 Мастер - классов от хореографов по направлениям: hip-hop, afro, contemporary, high heels, strip.',
+    instructors: '',
+    schedule: [
+      '13:00 - 14:30 Varyawho',
+      '14:40 - 16:10 KRISH',
+      '16:20 - 17:50 Danya Yushkov',
+      '17:50 - 18:10 ПЕРЕРЫВ',
+      '18:10 - 19:40 Olya Rudak',
+      '19:50 - 21:20 Gubanova Daria'
+    ]
   },
   {
-    title: 'Street block',
-    description: '3 Мастер - классов от хореографов по направлениям: .....',
-    instructors: 'От хореографов: ......',
-    schedule: ['12:00-', '13:00 -', '14:00']
+    title: 'Street',
+    description: "3 Мастер - класса от хореографов по направлениям: hip-hop, afro, contemporary's",
+    instructors: '',
+    schedule: [
+      '13:00 - 14:30 Varyawho',
+      '14:40 - 16:10 KRISH',
+      '16:20 - 17:50 Danya Yushkov'
+    ]
   },
   {
-    title: 'Lady block',
-    description: '3 Мастер - классов от хореографов по направлениям: .....',
-    instructors: 'От хореографов: ......',
-    schedule: ['12:00-', '13:00 -', '14:00']
+    title: 'Ladies',
+    description: '3 Мастер - класса от хореографов по направлениям: contemporary, high heels, strip.',
+    instructors: '',
+    schedule: [
+      '16:20 - 17:50 Danya Yushkov',
+      '18:10 - 19:40 Olya Rudak',
+      '19:50 - 21:20 Gubanova Daria'
+    ]
   }
 ]
 
@@ -80,8 +95,8 @@ export default function MasterClasses() {
                 {pkg.title}
               </h3>
               <p className="text-sm text-gray-300 mb-2">{pkg.description}</p>
-              <p className="text-sm text-gray-400 mb-4">{pkg.instructors}</p>
-              <div>
+              {pkg.instructors && <p className="text-sm text-gray-400 mb-4">{pkg.instructors}</p>}
+              <div className={pkg.instructors ? '' : 'mt-4'}>
                 <p className="text-sm font-semibold mb-2">Расписание:</p>
                 <div className="text-sm text-gray-300 space-y-1">
                   {pkg.schedule.map((time, idx) => (
