@@ -9,18 +9,20 @@ export default function TelegramHelper() {
   useEffect(() => {
     const handleScroll = () => {
       const socialSection = document.querySelector('#social')
+      const memoriesSection = document.querySelector('#memories')
       const scrollY = window.scrollY
       const windowHeight = window.innerHeight
 
-      // Check if we're in the social media section
-      if (socialSection) {
-        const socialRect = socialSection.getBoundingClientRect()
-        const isInSocialSection = socialRect.top < windowHeight && socialRect.bottom > 0
-
-        if (isInSocialSection) {
-          setIsVisible(false)
-          setShowBubble(false)
-          return
+      // Check if we're in the social media or memories section
+      const hiddenSections = [socialSection, memoriesSection]
+      for (const section of hiddenSections) {
+        if (section) {
+          const rect = section.getBoundingClientRect()
+          if (rect.top < windowHeight && rect.bottom > 0) {
+            setIsVisible(false)
+            setShowBubble(false)
+            return
+          }
         }
       }
 
