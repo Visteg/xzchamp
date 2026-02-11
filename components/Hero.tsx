@@ -97,7 +97,7 @@ export default function Hero() {
               transform: 'scale(1.2)',
             }}
           >
-            <source src="/1ОТКРЫВАШКА!.mp4" type="video/mp4" />
+            <source src="/hero-bg.mp4" type="video/mp4" />
           </video>
         </div>
 
