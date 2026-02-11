@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'PRO2XZ CHAMP',
+  title: 'PROEXZ CHAMP',
   description: 'Танцевальный чемпионат с заботой о танце',
 }
 

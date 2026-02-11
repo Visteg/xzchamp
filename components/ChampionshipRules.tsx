@@ -395,22 +395,22 @@ export default function ChampionshipRules() {
     setOpenIndex(isClosing ? null : index)
 
     if (!isClosing) {
-      // Ждём завершения анимации закрытия предыдущего аккордеона
-      setTimeout(() => {
+      // Скроллим сразу после рендера, до начала CSS-анимации,
+      // чтобы избежать конфликта скролла с layout-сдвигами от анимации
+      requestAnimationFrame(() => {
         const element = itemRefs.current[index]
         if (!element) return
 
         const rect = element.getBoundingClientRect()
-        const headerOffset = 80 // высота хедера
+        const headerOffset = 80
 
-        // Скроллим только если элемент выше viewport или частично скрыт хедером
-        if (rect.top < headerOffset) {
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+        if (rect.top < headerOffset || rect.top > window.innerHeight) {
+          window.scrollTo({
+            top: window.scrollY + rect.top - headerOffset,
+            behavior: 'smooth'
           })
         }
-      }, 350) // после завершения анимации (duration-300 + запас)
+      })
     }
   }
 
