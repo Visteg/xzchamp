@@ -49,18 +49,14 @@ export default function MasterClasses() {
           <span className="chrome-text">Мастер - классы</span>
         </h2>
 
-        {/* Video placeholder */}
+        {/* Masterclass image */}
         <div className="relative group">
-          <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-12 flex items-center justify-center aspect-video border border-white/10">
-            <div className="text-center text-gray-500">
-              <div className="w-16 h-16 mx-auto mb-4 bg-white/5 rounded-xl flex items-center justify-center">
-                <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                  <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
-                </svg>
-              </div>
-              <p className="text-sm">Видео</p>
-            </div>
+          <div className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden border border-white/10">
+            <img
+              src="/xzchamp/IMG_5531.JPEG"
+              alt="Мастер-классы PRO2XZ"
+              className="w-full h-auto object-cover"
+            />
           </div>
         </div>
 
