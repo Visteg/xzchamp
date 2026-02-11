@@ -2,12 +2,12 @@ import Link from 'next/link'
 
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative pb-16">
       {/* Background */}
       <div className="cyber-grid"></div>
       <div className="glow-orb orb-center"></div>
 
-      <div className="relative z-10 container mx-auto px-4 py-16 max-w-4xl">
+      <div className="relative z-10 container mx-auto px-4 py-8 md:py-16 max-w-4xl">
         {/* Back button */}
         <Link
           href="/"
@@ -26,14 +26,14 @@ export default function PrivacyPolicy() {
         <p className="text-gray-400 text-sm mb-8">«20» апреля 2025 г.</p>
 
         {/* Content */}
-        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 md:p-10 border border-white/10">
-          <div className="space-y-6 text-gray-300 leading-relaxed">
+        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 md:p-10 border border-white/10">
+          <div className="space-y-4 md:space-y-6 text-gray-300 text-xs md:text-sm leading-relaxed">
             <p>
               Политика конфиденциальности (далее – Политика) утверждена ИП Вертий Анной Юрьевной для танцевального чемпионата «Pro_E_XZ» г. Ростов-на-Дону в лице танцевальной студии «ExtraDance" (далее – «студия») в целях установления правил обработки персональных данных клиентов студии (далее – Клиент), в том числе собираемых при использовании сайта (далее – «Сайт»).
             </p>
 
             <div>
-              <h2 className="text-xl font-bold text-white mb-3">1. Общие положения</h2>
+              <h2 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">1. Общие положения</h2>
               <div className="space-y-3">
                 <p><strong>1.1.</strong> В Политике и вытекающих или связанных с ней отношениях Сторон применяются следующие термины и определения:</p>
                 <p className="ml-4"><strong>1.1.1.</strong> Персональные данные – любая информация, относящаяся к прямо или косвенно определенному или определяемому физическому лицу (субъекту персональных данных).</p>
@@ -48,7 +48,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-white mb-3">2. Цели обработки персональных данных</h2>
+              <h2 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">2. Цели обработки персональных данных</h2>
               <div className="space-y-3">
                 <p><strong>2.1.</strong> Персональные данные Клиента могут использоваться Студией в следующих целях:</p>
                 <p className="ml-4"><strong>2.1.1.</strong> Обработка заполненной Клиентом регистрационной формы, направленной через Сайт, или представленной Клиентом Студии иным способом.</p>
@@ -59,7 +59,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-white mb-3">3. Правовые основания обработки персональных данных</h2>
+              <h2 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">3. Правовые основания обработки персональных данных</h2>
               <div className="space-y-3">
                 <p><strong>3.1.</strong> Обработка персональных данных Студией осуществляется с соблюдением принципов и правил, предусмотренных в следующих актах:</p>
                 <p className="ml-4"><strong>3.1.1.</strong> Федеральный закон от 27.07.2006 года №152-ФЗ «О персональных данных»;</p>
@@ -69,7 +69,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-white mb-3">4. Перечень персональных данных</h2>
+              <h2 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">4. Перечень персональных данных</h2>
               <div className="space-y-3">
                 <p><strong>4.1.</strong> К персональным данным относится:</p>
                 <p className="ml-4"><strong>4.1.1.</strong> Информация, доступ к которой Клиент предоставил о себе самостоятельно при заполнении формы на Сайте или иным способом;</p>
@@ -98,12 +98,12 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-white mb-3">5. Способы обработки персональных данных</h2>
+              <h2 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">5. Способы обработки персональных данных</h2>
               <p><strong>5.1.</strong> Предоставляя Студии свои персональные данные, Клиент дает согласие Студии на обработку персональных данных любым способом (с использованием средств автоматизации или без использования таких средств), включая, но не ограничиваясь: сбор, хранение, уточнение (обновление, изменение), извлечение, использование, удаление, уничтожение персональных данных Клиента.</p>
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-white mb-3">6. Передача и распространение персональных данных</h2>
+              <h2 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">6. Передача и распространение персональных данных</h2>
               <div className="space-y-3">
                 <p><strong>6.1.</strong> Студия не предоставляет персональные данные Клиента или доступ к ним третьим лицам без предварительного согласия Клиента. Исключением являются обезличенные и/или агрегированные данные Клиентов, которые собираются в целях улучшения Сайта, проведения статистических, маркетинговых и иных исследований.</p>
                 <p><strong>6.2.</strong> Студия не контролирует и не несет ответственность за сайты третьих лиц, на которые Клиент может перейти по ссылкам, расположенным на Сайте.</p>
@@ -112,12 +112,12 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-white mb-3">7. Меры по обеспечению безопасности персональных данных</h2>
+              <h2 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">7. Меры по обеспечению безопасности персональных данных</h2>
               <p><strong>7.1.</strong> Студия принимает необходимые и достаточные правовые, организационные и технические меры для защиты персональных данных Клиента от неправомерных действий третьих лиц или случайных утечек.</p>
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-white mb-3">8. Срок обработки персональных данных</h2>
+              <h2 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">8. Срок обработки персональных данных</h2>
               <div className="space-y-3">
                 <p><strong>8.1.</strong> Студия вправе осуществлять обработку персональных данных до отзыва согласия Клиента на обработку персональных данных.</p>
                 <p><strong>8.2.</strong> В случае отзыва Клиентом согласия на обработку его персональных данных Студия прекращает их обработку и в случае, если сохранение персональных данных более не требуется для целей обработки персональных данных, уничтожает персональные данные в срок, не превышающий 30 (тридцати) календарных дней с даты поступления указанного отзыва.</p>
@@ -127,7 +127,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-white mb-3">9. Права Клиента</h2>
+              <h2 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">9. Права Клиента</h2>
               <div className="space-y-3">
                 <p><strong>9.1.</strong> Клиент может обратиться к Студии с запросом о реализации его прав в отношении персональных данных (контакты приведены в разд. 11 Политики).</p>
                 <p><strong>9.2.</strong> Студия обеспечивает исполнение запроса в разумные сроки, но не позднее 30 (тридцати) календарных дней с момента получения запроса. Данный срок может быть увеличен до 3 (трех) месяцев ввиду сложности запроса или большого количества запросов от клиентов Студии. О подобном продлении срока Студия предварительно уведомляет Клиента по электронной почте, указанной в запросе.</p>
@@ -136,7 +136,7 @@ export default function PrivacyPolicy() {
             </div>
 
             <div>
-              <h2 className="text-xl font-bold text-white mb-3">10. Прочие положения</h2>
+              <h2 className="text-lg md:text-xl font-bold text-white mb-2 md:mb-3">10. Прочие положения</h2>
               <div className="space-y-3">
                 <p><strong>10.1.</strong> Студия оставляет за собой право в любое время изменять, добавлять или удалять пункты Политики без уведомления Клиента.</p>
                 <p><strong>10.2.</strong> Новая редакция Политики вступает в силу через 7 (семь) календарных дней с момента ее размещения на Сайте.</p>

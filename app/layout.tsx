@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import LoadingScreen from '@/components/LoadingScreen'
 
 export const metadata: Metadata = {
   title: 'PRO2XZ CHAMP',
@@ -15,7 +14,6 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body>
-        <LoadingScreen />
         {children}
       </body>
     </html>
