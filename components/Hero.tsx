@@ -130,20 +130,20 @@ export default function Hero() {
             }}
           />
         </div>
-      </div>
 
-      {/* Subtitle */}
-      <h2
-        className="font-['Unbounded'] font-black text-base md:text-xl tracking-wide mb-12 max-w-md"
-        style={{
-          background: 'linear-gradient(180deg, #FFF 0%, #AAA 100%)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.3))'
-        }}
-      >
-        Танцевальный чемпионат с заботой о танце.
-      </h2>
+        {/* Subtitle */}
+        <h2
+          className="relative font-['Unbounded'] font-black text-base md:text-xl tracking-wide mt-4 md:mt-6 max-w-md mx-auto"
+          style={{
+            background: 'linear-gradient(180deg, #FFF 0%, #AAA 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.3))'
+          }}
+        >
+          Танцевальный чемпионат с заботой о танце.
+        </h2>
+      </div>
 
       {/* Registration Section */}
       <div className="mt-12 w-full max-w-md px-4">
