@@ -282,16 +282,16 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
               </div>
 
               {/* Дата рождения */}
-              <div>
+              <div className="date-input-wrapper">
                 <input
                   type="date"
                   name="birthDate"
-                  placeholder="дата рождения"
                   value={formData.birthDate}
                   onChange={handleInputChange}
                   required
                   className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300"
                 />
+                <label>дата рождения</label>
               </div>
 
               {/* Email for solo */}
@@ -370,16 +370,16 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
                 />
               </div>
 
-              <div>
+              <div className="date-input-wrapper">
                 <input
                   type="date"
                   name="birthDate1"
-                  placeholder="дата рождения (первого участника)"
                   value={formData.birthDate1}
                   onChange={handleInputChange}
                   required
                   className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300"
                 />
+                <label>дата рождения (первый участник)</label>
               </div>
 
               <div>
@@ -426,16 +426,16 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
                 />
               </div>
 
-              <div>
+              <div className="date-input-wrapper">
                 <input
                   type="date"
                   name="birthDate2"
-                  placeholder="дата рождения (второго участника)"
                   value={formData.birthDate2}
                   onChange={handleInputChange}
                   required
                   className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300"
                 />
+                <label>дата рождения (второй участник)</label>
               </div>
 
               <div>
@@ -611,14 +611,16 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
                         required
                         className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300"
                       />
-                      <input
-                        type="date"
-                        placeholder="дата рождения"
-                        value={participant.birthDate}
-                        onChange={(e) => handleParticipantChange(index, 'birthDate', e.target.value)}
-                        required
-                        className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300"
-                      />
+                      <div className="date-input-wrapper">
+                        <input
+                          type="date"
+                          value={participant.birthDate}
+                          onChange={(e) => handleParticipantChange(index, 'birthDate', e.target.value)}
+                          required
+                          className="w-full px-6 py-3 rounded-full bg-white/5 border-2 border-white/20 text-white placeholder-gray-500 font-['Unbounded'] text-sm focus:outline-none focus:border-[var(--neon-pink)] transition-all duration-300"
+                        />
+                        <label>дата рождения</label>
+                      </div>
                     </div>
                   ))}
                 </div>
