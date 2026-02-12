@@ -154,9 +154,9 @@ export default function Hero() {
       </div>
 
       {/* Registration Section */}
-      <div className="mt-12 w-full max-w-md px-4">
+      <div className="relative z-10 mt-10 md:mt-16 w-full max-w-md px-4">
 
-        <h3 className="chrome-text font-['Unbounded'] text-2xl font-bold mb-6">
+        <h3 className="font-['Unbounded'] text-2xl font-bold mb-6 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
           Регистрация
         </h3>
 

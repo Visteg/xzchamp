@@ -405,23 +405,9 @@ export default function ChampionshipRules() {
 
     if (!isClosing) {
       requestAnimationFrame(() => {
-        // Восстанавливаем анимацию для предыдущего элемента после отрисовки
         requestAnimationFrame(() => {
           setNoTransitionIndex(null)
         })
-
-        const element = itemRefs.current[index]
-        if (!element) return
-
-        const rect = element.getBoundingClientRect()
-        const headerOffset = 80
-
-        if (rect.top < headerOffset || rect.top > window.innerHeight) {
-          window.scrollTo({
-            top: window.scrollY + rect.top - headerOffset,
-            behavior: 'smooth'
-          })
-        }
       })
     }
   }
