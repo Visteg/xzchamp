@@ -395,21 +395,30 @@ export default function ChampionshipRules() {
     const isClosing = openIndex === index
     const prevIndex = openIndex
 
-    // При переключении между аккордеонами — мгновенно закрываем предыдущий,
-    // чтобы layout не прыгал из-за анимации закрытия контента выше
+    // При переключении — компенсируем скролл, чтобы страницу не «выбрасывало»
     if (!isClosing && prevIndex !== null) {
+      const clickedEl = itemRefs.current[index]
+      const rectBefore = clickedEl?.getBoundingClientRect()
+
       setNoTransitionIndex(prevIndex)
-    }
+      setOpenIndex(index)
 
-    setOpenIndex(isClosing ? null : index)
-
-    if (!isClosing) {
       requestAnimationFrame(() => {
+        if (clickedEl && rectBefore) {
+          const rectAfter = clickedEl.getBoundingClientRect()
+          const delta = rectAfter.top - rectBefore.top
+          if (Math.abs(delta) > 1) {
+            window.scrollBy(0, delta)
+          }
+        }
         requestAnimationFrame(() => {
           setNoTransitionIndex(null)
         })
       })
+      return
     }
+
+    setOpenIndex(isClosing ? null : index)
   }
 
   return (
