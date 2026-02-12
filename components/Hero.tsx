@@ -93,7 +93,7 @@ export default function Hero() {
             playsInline
             className="w-full h-full object-cover"
             style={{
-              filter: 'blur(3px) brightness(0.4)',
+              filter: 'blur(2px) brightness(0.4)',
               transform: 'scale(1.2)',
             }}
           >
@@ -154,7 +154,7 @@ export default function Hero() {
       </div>
 
       {/* Registration Section */}
-      <div className="relative z-10 mt-10 md:mt-16 w-full max-w-md px-4">
+      <div className="relative z-10 mt-20 md:mt-16 w-full max-w-md px-4">
 
         <h3 className="font-['Unbounded'] text-2xl font-bold mb-6 text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
           Регистрация
