@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, type ReactNode } from 'react'
+import { flushSync } from 'react-dom'
 
 interface AccordionItem {
   title: string
@@ -395,30 +396,38 @@ export default function ChampionshipRules() {
     const isClosing = openIndex === index
     const prevIndex = openIndex
 
-    // При переключении — компенсируем скролл, чтобы страницу не «выбрасывало»
-    if (!isClosing && prevIndex !== null) {
+    if (isClosing) {
+      setOpenIndex(null)
+      return
+    }
+
+    // При переключении — компенсируем скролл
+    if (prevIndex !== null) {
       const clickedEl = itemRefs.current[index]
       const rectBefore = clickedEl?.getBoundingClientRect()
 
-      setNoTransitionIndex(prevIndex)
-      setOpenIndex(index)
+      // flushSync гарантирует, что DOM обновится синхронно
+      flushSync(() => {
+        setNoTransitionIndex(prevIndex)
+        setOpenIndex(index)
+      })
+
+      // DOM уже обновлён — замеряем новую позицию и корректируем скролл
+      if (clickedEl && rectBefore) {
+        const rectAfter = clickedEl.getBoundingClientRect()
+        const delta = rectAfter.top - rectBefore.top
+        if (Math.abs(delta) > 1) {
+          window.scrollBy(0, delta)
+        }
+      }
 
       requestAnimationFrame(() => {
-        if (clickedEl && rectBefore) {
-          const rectAfter = clickedEl.getBoundingClientRect()
-          const delta = rectAfter.top - rectBefore.top
-          if (Math.abs(delta) > 1) {
-            window.scrollBy(0, delta)
-          }
-        }
-        requestAnimationFrame(() => {
-          setNoTransitionIndex(null)
-        })
+        setNoTransitionIndex(null)
       })
       return
     }
 
-    setOpenIndex(isClosing ? null : index)
+    setOpenIndex(index)
   }
 
   return (
