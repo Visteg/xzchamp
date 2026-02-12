@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useRef, type ReactNode } from 'react'
-import { flushSync } from 'react-dom'
+import { useState, type ReactNode } from 'react'
 
 interface AccordionItem {
   title: string
@@ -388,46 +387,18 @@ const accordionData: AccordionItem[] = [
 ]
 
 export default function ChampionshipRules() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-  const [noTransitionIndex, setNoTransitionIndex] = useState<number | null>(null)
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([])
+  const [openIndices, setOpenIndices] = useState<Set<number>>(new Set())
 
   const toggleAccordion = (index: number) => {
-    const isClosing = openIndex === index
-    const prevIndex = openIndex
-
-    if (isClosing) {
-      setOpenIndex(null)
-      return
-    }
-
-    // При переключении — компенсируем скролл
-    if (prevIndex !== null) {
-      const clickedEl = itemRefs.current[index]
-      const rectBefore = clickedEl?.getBoundingClientRect()
-
-      // flushSync гарантирует, что DOM обновится синхронно
-      flushSync(() => {
-        setNoTransitionIndex(prevIndex)
-        setOpenIndex(index)
-      })
-
-      // DOM уже обновлён — замеряем новую позицию и корректируем скролл
-      if (clickedEl && rectBefore) {
-        const rectAfter = clickedEl.getBoundingClientRect()
-        const delta = rectAfter.top - rectBefore.top
-        if (Math.abs(delta) > 1) {
-          window.scrollBy(0, delta)
-        }
+    setOpenIndices(prev => {
+      const next = new Set(prev)
+      if (next.has(index)) {
+        next.delete(index)
+      } else {
+        next.add(index)
       }
-
-      requestAnimationFrame(() => {
-        setNoTransitionIndex(null)
-      })
-      return
-    }
-
-    setOpenIndex(index)
+      return next
+    })
   }
 
   return (
@@ -441,8 +412,7 @@ export default function ChampionshipRules() {
           {accordionData.map((item, index) => (
             <div
               key={index}
-              ref={(el) => { itemRefs.current[index] = el }}
-              className="border-b border-white/10 scroll-mt-20"
+              className="border-b border-white/10"
             >
               <button
                 onClick={() => toggleAccordion(index)}
@@ -454,18 +424,16 @@ export default function ChampionshipRules() {
                 <span
                   className="text-2xl font-bold transition-all duration-300"
                   style={{
-                    color: openIndex === index ? 'var(--neon-blue)' : 'var(--neon-pink)',
+                    color: openIndices.has(index) ? 'var(--neon-blue)' : 'var(--neon-pink)',
                   }}
                 >
-                  {openIndex === index ? '−' : '+'}
+                  {openIndices.has(index) ? '−' : '+'}
                 </span>
               </button>
 
               <div
-                className={`overflow-hidden ${
-                  noTransitionIndex === index ? '' : 'transition-all duration-300 ease-in-out'
-                } ${
-                  openIndex === index ? 'max-h-[2000px] opacity-100 pb-5' : 'max-h-0 opacity-0'
+                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                  openIndices.has(index) ? 'max-h-[5000px] opacity-100 pb-5' : 'max-h-0 opacity-0'
                 }`}
               >
                 <div className="text-gray-400 text-sm leading-relaxed">
