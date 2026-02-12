@@ -93,7 +93,7 @@ export default function Hero() {
             playsInline
             className="w-full h-full object-cover"
             style={{
-              filter: 'blur(7px) brightness(0.4)',
+              filter: 'blur(3px) brightness(0.4)',
               transform: 'scale(1.2)',
             }}
           >
@@ -132,8 +132,8 @@ export default function Hero() {
         </div>
 
         {/* Subtitle */}
-        <h2
-          className="relative font-['Unbounded'] font-black text-base md:text-xl tracking-wide mt-4 md:mt-6 max-w-md mx-auto"
+        <div
+          className="relative mt-4 md:mt-6 max-w-md mx-auto text-center"
           style={{
             background: 'linear-gradient(180deg, #FFF 0%, #AAA 100%)',
             WebkitBackgroundClip: 'text',
@@ -141,8 +141,16 @@ export default function Hero() {
             filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.3))'
           }}
         >
-          Танцевальный чемпионат с заботой о танце.
-        </h2>
+          <h2 className="font-['Unbounded'] font-black text-lg md:text-2xl tracking-wide">
+            PRO_E_XZ CHAMP & CLASSES
+          </h2>
+          <p className="font-['Unbounded'] font-medium text-sm md:text-base tracking-wide mt-2">
+            Танцевальный чемпионат и классы
+          </p>
+          <p className="font-['Unbounded'] font-medium text-sm md:text-base tracking-wide mt-1">
+            22–24 мая · Ростов-на-Дону
+          </p>
+        </div>
       </div>
 
       {/* Registration Section */}
