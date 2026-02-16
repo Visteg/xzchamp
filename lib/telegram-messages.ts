@@ -63,6 +63,9 @@ const NOMINATION_LABELS: Record<string, string> = {
   'ladies-beg-crew': 'Ladies lvl BEG crew',
   'ladies-pro-crew': 'Ladies lvl PRO crew',
   // Masterclass
+  'full-pass': 'Full pass',
+  'street-block': 'Street block',
+  'ladies-block': 'Ladies block',
   'hip-hop': 'Hip-Hop',
   'breaking': 'Breaking',
   'popping': 'Popping',
