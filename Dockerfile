@@ -39,6 +39,9 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 
+# Создаем директорию для данных заявок
+RUN mkdir -p /app/data
+
 # Меняем владельца файлов
 RUN chown -R nextjs:nodejs /app
 

@@ -1,8 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useFormCache } from '../hooks/useFormCache'
 import { useAntiSpam } from '../hooks/useAntiSpam'
+import RedirectPopup from './RedirectPopup'
 
 interface SpectatorFormProps {
   onClose: () => void
@@ -29,12 +30,38 @@ export default function SpectatorForm({ onClose }: SpectatorFormProps) {
     }
   }, [])
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitError, setSubmitError] = useState('')
+  const [telegramLink, setTelegramLink] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateSubmit()) return
-    console.log('Spectator form submitted:', formData)
-    clearFormCache()
-    startCooldown()
+
+    setIsSubmitting(true)
+    setSubmitError('')
+
+    try {
+      const res = await fetch('/api/submit-form', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ category: 'spectator', formData }),
+      })
+
+      const result = await res.json()
+
+      if (!res.ok || !result.success) {
+        throw new Error(result.error || 'Ошибка отправки')
+      }
+
+      clearFormCache()
+      startCooldown()
+      setTelegramLink(result.telegramLink)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Произошла ошибка. Попробуйте позже.'
+      setSubmitError(message)
+      setIsSubmitting(false)
+    }
   }
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -222,17 +249,26 @@ export default function SpectatorForm({ onClose }: SpectatorFormProps) {
               style={{ position: 'absolute', left: '-9999px', opacity: 0, height: 0, width: 0 }}
             />
 
+            {/* Error Message */}
+            {submitError && (
+              <p className="text-red-400 text-sm text-center">{submitError}</p>
+            )}
+
             {/* Submit Button */}
             <button
               type="submit"
-              disabled={isDisabled}
-              className={`w-full py-4 px-6 rounded-full border-2 text-white font-['Unbounded'] font-bold uppercase tracking-wide transition-all duration-300 mt-6 ${isDisabled ? 'bg-gray-600 border-gray-500 cursor-not-allowed opacity-50' : 'bg-white/20 border-white/50 hover:bg-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-105'}`}
+              disabled={isDisabled || isSubmitting}
+              className={`w-full py-4 px-6 rounded-full border-2 text-white font-['Unbounded'] font-bold uppercase tracking-wide transition-all duration-300 mt-6 ${(isDisabled || isSubmitting) ? 'bg-gray-600 border-gray-500 cursor-not-allowed opacity-50' : 'bg-white/20 border-white/50 hover:bg-white/30 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:scale-105'}`}
             >
-              {isDisabled ? `Подождите ${cooldownLeft} сек.` : 'Отправить заявку'}
+              {isSubmitting ? 'Отправка...' : isDisabled ? `Подождите ${cooldownLeft} сек.` : 'Отправить заявку'}
             </button>
           </form>
         </div>
       </div>
+
+      {telegramLink && (
+        <RedirectPopup telegramLink={telegramLink} onClose={() => { setTelegramLink(''); onClose() }} />
+      )}
 
       <style jsx>{`
         @keyframes modalSlideIn {
