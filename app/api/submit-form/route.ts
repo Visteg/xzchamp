@@ -3,6 +3,8 @@ import crypto from 'crypto'
 import { addPending, cleanupExpired } from '@/lib/pending-store'
 import { getDeepLink } from '@/lib/telegram'
 import { FormCategory, PendingApplication } from '@/lib/types'
+import { checkRateLimit } from '@/lib/rate-limiter'
+import { validateFormData } from '@/lib/form-validator'
 
 const VALID_CATEGORIES: FormCategory[] = ['solo', 'duet', 'team', 'masterclass', 'spectator']
 
@@ -18,9 +20,22 @@ export async function POST(req: NextRequest) {
   try {
     cleanupExpired()
 
+    // 1. Rate limiting by IP
+    const forwarded = req.headers.get('x-forwarded-for')
+    const ip = forwarded ? forwarded.split(',')[0].trim() : req.headers.get('x-real-ip') || 'unknown'
+
+    const rateResult = checkRateLimit(ip)
+    if (!rateResult.allowed) {
+      return NextResponse.json(
+        { error: 'Слишком много запросов. Попробуйте через несколько минут.' },
+        { status: 429, headers: { 'Retry-After': String(rateResult.retryAfterSeconds || 60) } }
+      )
+    }
+
     const body = await req.json()
     const { category, formData } = body as { category: FormCategory; formData: Record<string, unknown> }
 
+    // 2. Category validation
     if (!category || !VALID_CATEGORIES.includes(category)) {
       return NextResponse.json({ error: 'Invalid category' }, { status: 400 })
     }
@@ -29,9 +44,16 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Missing form data' }, { status: 400 })
     }
 
-    const id = crypto.randomUUID()
+    // 3. Field content validation
+    const validation = validateFormData(category, formData)
+    if (!validation.valid) {
+      return NextResponse.json(
+        { error: validation.errors[0], errors: validation.errors },
+        { status: 400 }
+      )
+    }
 
-    // Keep only relevant fields for this category
+    // 4. Keep only relevant fields for this category
     const allowedFields = CATEGORY_FIELDS[category]
     const cleanData: Record<string, unknown> = {}
     for (const field of allowedFields) {
@@ -39,6 +61,8 @@ export async function POST(req: NextRequest) {
         cleanData[field] = formData[field]
       }
     }
+
+    const id = crypto.randomUUID()
 
     const pending: PendingApplication = {
       id,
