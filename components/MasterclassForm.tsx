@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { useFormCache } from '../hooks/useFormCache'
 import { useAntiSpam } from '../hooks/useAntiSpam'
+import { validateForm } from '../lib/validate-client'
 import RedirectPopup from './RedirectPopup'
 
 interface MasterclassFormProps {
@@ -40,6 +41,12 @@ export default function MasterclassForm({ onClose }: MasterclassFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateSubmit()) return
+
+    const validationError = validateForm('masterclass', formData)
+    if (validationError) {
+      setSubmitError(validationError)
+      return
+    }
 
     setIsSubmitting(true)
     setSubmitError('')

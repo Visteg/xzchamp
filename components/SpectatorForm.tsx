@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useFormCache } from '../hooks/useFormCache'
 import { useAntiSpam } from '../hooks/useAntiSpam'
+import { validateForm } from '../lib/validate-client'
 import RedirectPopup from './RedirectPopup'
 
 interface SpectatorFormProps {
@@ -37,6 +38,12 @@ export default function SpectatorForm({ onClose }: SpectatorFormProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateSubmit()) return
+
+    const validationError = validateForm('spectator', formData)
+    if (validationError) {
+      setSubmitError(validationError)
+      return
+    }
 
     setIsSubmitting(true)
     setSubmitError('')

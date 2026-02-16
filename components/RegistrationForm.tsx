@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useFormCache } from '../hooks/useFormCache'
 import { useAntiSpam } from '../hooks/useAntiSpam'
+import { validateForm } from '../lib/validate-client'
 import RedirectPopup from './RedirectPopup'
 
 interface RegistrationFormProps {
@@ -83,6 +84,12 @@ export default function RegistrationForm({ category, onClose }: RegistrationForm
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateSubmit()) return
+
+    const validationError = validateForm(category, formData)
+    if (validationError) {
+      setSubmitError(validationError)
+      return
+    }
 
     setIsSubmitting(true)
     setSubmitError('')

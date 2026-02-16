@@ -79,7 +79,7 @@ const NOMINATION_LABELS: Record<string, string> = {
   'all-days': 'Все дни',
 }
 
-function label(value: string): string {
+export function label(value: string): string {
   return NOMINATION_LABELS[value] || value
 }
 
