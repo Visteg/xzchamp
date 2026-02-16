@@ -108,8 +108,14 @@ export async function POST(req: NextRequest) {
         // 4. Notify admin group
         const adminChatId = process.env.TELEGRAM_ADMIN_CHAT_ID
         if (adminChatId) {
-          const adminText = formatAdminNotification(pending.category, pending.data)
-          await sendMessage({ chat_id: adminChatId, text: adminText, parse_mode: 'HTML' })
+          try {
+            const adminText = formatAdminNotification(pending.category, pending.data)
+            await sendMessage({ chat_id: adminChatId, text: adminText, parse_mode: 'HTML' })
+          } catch (adminError) {
+            console.error('Admin notification failed. TELEGRAM_ADMIN_CHAT_ID:', adminChatId, 'Error:', adminError)
+          }
+        } else {
+          console.warn('TELEGRAM_ADMIN_CHAT_ID is not set, skipping admin notification')
         }
 
         // 5. Answer callback

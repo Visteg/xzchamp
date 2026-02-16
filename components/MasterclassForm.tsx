@@ -272,7 +272,7 @@ export default function MasterclassForm({ onClose }: MasterclassFormProps) {
       </div>
 
       {telegramLink && (
-        <RedirectPopup telegramLink={telegramLink} onClose={() => { setTelegramLink(''); onClose() }} />
+        <RedirectPopup telegramLink={telegramLink} onClose={() => { setTelegramLink(''); onClose() }} accent="blue" />
       )}
 
       <style jsx>{`

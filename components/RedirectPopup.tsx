@@ -2,13 +2,41 @@
 
 import { useState, useEffect } from 'react'
 
+type AccentTheme = 'pink' | 'blue' | 'white'
+
 interface RedirectPopupProps {
   telegramLink: string
   onClose: () => void
+  accent?: AccentTheme
 }
 
-export default function RedirectPopup({ telegramLink, onClose }: RedirectPopupProps) {
+const ACCENT_STYLES: Record<AccentTheme, { color: string; rgb: string; border: string; shadow: string; iconBg: string }> = {
+  pink: {
+    color: 'var(--neon-pink)',
+    rgb: '255,0,204',
+    border: 'rgba(255,0,204,0.3)',
+    shadow: 'rgba(255,0,204,0.2)',
+    iconBg: 'rgba(255,0,204,0.15)',
+  },
+  blue: {
+    color: 'var(--neon-blue)',
+    rgb: '0,240,255',
+    border: 'rgba(0,240,255,0.3)',
+    shadow: 'rgba(0,240,255,0.2)',
+    iconBg: 'rgba(0,240,255,0.15)',
+  },
+  white: {
+    color: 'rgba(255,255,255,0.8)',
+    rgb: '255,255,255',
+    border: 'rgba(255,255,255,0.15)',
+    shadow: 'rgba(255,255,255,0.15)',
+    iconBg: 'rgba(255,255,255,0.1)',
+  },
+}
+
+export default function RedirectPopup({ telegramLink, onClose, accent = 'pink' }: RedirectPopupProps) {
   const [seconds, setSeconds] = useState(10)
+  const theme = ACCENT_STYLES[accent]
 
   useEffect(() => {
     if (seconds <= 0) {
@@ -33,13 +61,13 @@ export default function RedirectPopup({ telegramLink, onClose }: RedirectPopupPr
         style={{
           animation: 'modalSlideIn 0.3s ease-out',
           background: 'linear-gradient(135deg, rgba(20,20,30,0.95) 0%, rgba(10,10,15,0.98) 100%)',
-          border: '1px solid rgba(255,0,204,0.3)',
-          boxShadow: '0 0 60px rgba(255,0,204,0.2)',
+          border: `1px solid ${theme.border}`,
+          boxShadow: `0 0 60px ${theme.shadow}`,
         }}
       >
         {/* Checkmark icon */}
-        <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style={{ background: 'rgba(255,0,204,0.15)', border: '2px solid var(--neon-pink)' }}>
-          <svg className="w-8 h-8 text-[var(--neon-pink)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center" style={{ background: theme.iconBg, border: `2px solid ${theme.color}` }}>
+          <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: theme.color }}>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
           </svg>
         </div>
@@ -58,7 +86,7 @@ export default function RedirectPopup({ telegramLink, onClose }: RedirectPopupPr
             <circle cx="40" cy="40" r="36" fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth="4" />
             <circle
               cx="40" cy="40" r="36" fill="none"
-              stroke="var(--neon-pink)"
+              stroke={theme.color}
               strokeWidth="4"
               strokeLinecap="round"
               strokeDasharray={2 * Math.PI * 36}
@@ -74,7 +102,13 @@ export default function RedirectPopup({ telegramLink, onClose }: RedirectPopupPr
         {/* Redirect now button */}
         <button
           onClick={() => { window.location.href = telegramLink }}
-          className="w-full py-3 px-6 rounded-full text-white font-['Unbounded'] font-bold text-sm uppercase tracking-wide bg-[var(--neon-pink)] hover:shadow-[0_0_30px_var(--neon-pink)] hover:scale-105 transition-all duration-300 mb-3"
+          className="w-full py-3 px-6 rounded-full text-white font-['Unbounded'] font-bold text-sm uppercase tracking-wide hover:scale-105 transition-all duration-300 mb-3"
+          style={{
+            background: theme.color,
+            boxShadow: `0 0 0px transparent`,
+          }}
+          onMouseEnter={e => { e.currentTarget.style.boxShadow = `0 0 30px ${theme.shadow}` }}
+          onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 0 0px transparent' }}
         >
           Перейти сейчас
         </button>

@@ -267,7 +267,7 @@ export default function SpectatorForm({ onClose }: SpectatorFormProps) {
       </div>
 
       {telegramLink && (
-        <RedirectPopup telegramLink={telegramLink} onClose={() => { setTelegramLink(''); onClose() }} />
+        <RedirectPopup telegramLink={telegramLink} onClose={() => { setTelegramLink(''); onClose() }} accent="white" />
       )}
 
       <style jsx>{`
