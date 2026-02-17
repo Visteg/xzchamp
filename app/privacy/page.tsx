@@ -1,4 +1,13 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
+
+export const metadata: Metadata = {
+  title: 'Политика конфиденциальности — PRO_E_XZ CHAMP',
+  description: 'Политика конфиденциальности танцевального чемпионата PRO_E_XZ. Правила обработки персональных данных участников.',
+  alternates: {
+    canonical: '/privacy',
+  },
+}
 
 export default function PrivacyPolicy() {
   return (
