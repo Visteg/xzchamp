@@ -252,6 +252,13 @@ body {
   }
 }
 
+/* --- SELECT DROPDOWN OPTIONS (PC fix) --- */
+select option {
+  background-color: #1a1a2e;
+  color: #ffffff;
+  font-family: 'Unbounded', sans-serif;
+}
+
 /* --- SCROLLBAR --- */
 ::-webkit-scrollbar {
   width: 10px;

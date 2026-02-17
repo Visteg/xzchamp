@@ -177,6 +177,14 @@ export function getInstructionText(category: FormCategory): string {
   return instructions[category]
 }
 
+const CATEGORY_EMOJI: Record<FormCategory, string> = {
+  solo: '💃',
+  duet: '👫',
+  team: '👥',
+  masterclass: '🎓',
+  spectator: '🎟',
+}
+
 export function formatAdminNotification(category: FormCategory, data: FormData): string {
   let name = ''
   switch (category) {
@@ -186,5 +194,6 @@ export function formatAdminNotification(category: FormCategory, data: FormData):
     case 'masterclass': name = (data as MasterclassFormData).fullName; break
     case 'spectator': name = (data as SpectatorFormData).fullName; break
   }
-  return `🆕 Новая подтверждённая заявка!\n\n<b>Категория:</b> ${CATEGORY_NAMES[category]}\n<b>Имя/Название:</b> ${name}\n\nДанные записаны в таблицу.`
+  const emoji = CATEGORY_EMOJI[category]
+  return `${emoji} <b>${CATEGORY_NAMES[category]}</b> — новая заявка\n\n<b>Имя/Название:</b> ${name}\n\n✅ Данные записаны в таблицу.`
 }
