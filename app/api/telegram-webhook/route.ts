@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { findPending, updatePending, removePending, cleanupExpired } from '@/lib/pending-store'
 import { sendMessage, answerCallbackQuery } from '@/lib/telegram'
-import { appendToSheet } from '@/lib/google-sheets'
-import { formatApplicationForUser, getInstructionText, formatAdminNotification } from '@/lib/telegram-messages'
+import { formatApplicationForUser, getInstructionText } from '@/lib/telegram-messages'
 
 export async function POST(req: NextRequest) {
   try {
@@ -89,39 +88,17 @@ export async function POST(req: NextRequest) {
           return NextResponse.json({ ok: true })
         }
 
-        // 1. Write to Google Sheets
-        try {
-          await appendToSheet(pending.category, pending.data, pending.createdAt)
-        } catch (sheetError) {
-          console.error('Google Sheets error:', sheetError)
-          await answerCallbackQuery(callbackQuery.id, 'Ошибка записи. Попробуйте позже.')
-          return NextResponse.json({ ok: true })
-        }
-
-        // 2. Mark as confirmed
+        // 1. Mark as confirmed
         updatePending(uniqueId, { confirmed: true })
 
-        // 3. Send instruction to user
+        // 2. Send instruction to user
         const instructionText = getInstructionText(pending.category)
         await sendMessage({ chat_id: chatId, text: instructionText })
 
-        // 4. Notify admin group
-        const adminChatId = process.env.TELEGRAM_ADMIN_CHAT_ID
-        if (adminChatId) {
-          try {
-            const adminText = formatAdminNotification(pending.category, pending.data)
-            await sendMessage({ chat_id: adminChatId, text: adminText, parse_mode: 'HTML' })
-          } catch (adminError) {
-            console.error('Admin notification failed. TELEGRAM_ADMIN_CHAT_ID:', adminChatId, 'Error:', adminError)
-          }
-        } else {
-          console.warn('TELEGRAM_ADMIN_CHAT_ID is not set, skipping admin notification')
-        }
-
-        // 5. Answer callback
+        // 3. Answer callback
         await answerCallbackQuery(callbackQuery.id, 'Заявка подтверждена!')
 
-        // 6. Clean up
+        // 4. Clean up
         removePending(uniqueId)
 
         return NextResponse.json({ ok: true })

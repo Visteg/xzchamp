@@ -76,8 +76,12 @@ export default function RedirectPopup({ telegramLink, onClose, accent = 'pink' }
           Заявка отправлена!
         </h3>
 
-        <p className="text-gray-400 text-sm mb-6 leading-relaxed">
+        <p className="text-gray-400 text-sm mb-2 leading-relaxed">
           Сейчас вы будете перенаправлены в Telegram бота для подтверждения регистрации
+        </p>
+
+        <p className="text-yellow-400/90 text-xs mb-6 leading-relaxed font-semibold">
+          Для завершения регистрации обязательно запустите бота и подтвердите свои данные!
         </p>
 
         {/* Timer circle */}
