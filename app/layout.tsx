@@ -6,7 +6,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://proexzchamp.ru'
 
 export const metadata: Metadata = {
   title: 'PRO_E_XZ CHAMP — Танцевальный чемпионат в Ростове-на-Дону',
-  description: 'Танцевальный чемпионат и мастер-классы PRO_E_XZ. 22–24 мая 2026, Ростов-на-Дону. Регистрация участников, зрительские билеты, мастер-классы от топ-хореографов.',
+  description: 'PRO_E_XZ CHAMP — танцевальный чемпионат и мастер-классы в Ростове-на-Дону, 22–24 мая 2026. Соревнования по hip-hop, afro, contemporary, high heels и strip с участием топ-хореографов страны.',
   metadataBase: new URL(siteUrl),
   alternates: {
     canonical: '/',
