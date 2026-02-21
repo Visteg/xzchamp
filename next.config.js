@@ -3,6 +3,11 @@ const nextConfig = {
   // Для VDS используем standalone output для оптимизации
   output: 'standalone',
 
+  // Включаем instrumentation для мониторинга Google Sheets
+  experimental: {
+    instrumentationHook: true,
+  },
+
   // На VDS не нужен basePath
   // basePath убран
 
