@@ -177,6 +177,14 @@ export function getInstructionText(category: FormCategory): string {
   return instructions[category]
 }
 
+const SHEET_URLS: Record<FormCategory, string> = {
+  solo: 'https://docs.google.com/spreadsheets/d/1rip5KJMf2JfIu9qLSzW6cxrN2O_pUegSe_Um2zb_d40/edit?gid=0#gid=0',
+  duet: 'https://docs.google.com/spreadsheets/d/1rip5KJMf2JfIu9qLSzW6cxrN2O_pUegSe_Um2zb_d40/edit?gid=1855585498#gid=1855585498',
+  team: 'https://docs.google.com/spreadsheets/d/1rip5KJMf2JfIu9qLSzW6cxrN2O_pUegSe_Um2zb_d40/edit?gid=687717708#gid=687717708',
+  masterclass: 'https://docs.google.com/spreadsheets/d/1rip5KJMf2JfIu9qLSzW6cxrN2O_pUegSe_Um2zb_d40/edit?gid=1948007552#gid=1948007552',
+  spectator: 'https://docs.google.com/spreadsheets/d/1rip5KJMf2JfIu9qLSzW6cxrN2O_pUegSe_Um2zb_d40/edit?gid=1031355609#gid=1031355609',
+}
+
 const CATEGORY_EMOJI: Record<FormCategory, string> = {
   solo: '💃',
   duet: '👫',
@@ -195,5 +203,6 @@ export function formatAdminNotification(category: FormCategory, data: FormData):
     case 'spectator': name = (data as SpectatorFormData).fullName; break
   }
   const emoji = CATEGORY_EMOJI[category]
-  return `${emoji} <b>${CATEGORY_NAMES[category]}</b> — новая заявка\n\n<b>Имя/Название:</b> ${name}\n\n✅ Данные записаны в таблицу.`
+  const sheetUrl = SHEET_URLS[category]
+  return `${emoji} <b>${CATEGORY_NAMES[category]}</b> — новая заявка\n\n<b>Имя/Название:</b> ${name}\n\n✅ Данные записаны в таблицу.\n\n📊 <a href="${sheetUrl}">Открыть таблицу</a>`
 }
